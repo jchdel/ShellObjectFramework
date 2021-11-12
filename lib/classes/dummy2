@@ -1,0 +1,4 @@
+# placeholder for code related to the "dummy2" class
+# inherits from the dummy class
+. $CLASSES/dummy
+

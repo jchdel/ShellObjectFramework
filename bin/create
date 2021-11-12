@@ -1,0 +1,24 @@
+#!/bin/sh
+PWD=$(pwd)
+cd $(dirname $0)/../
+. lib/object.inc
+CLASS=$1
+[ ! -f $CLASSES/$CLASS ] \
+	&& echo "$CLASS is not a valid CLASS." \
+	&& echo "Valid CLASSES are:" \
+	&& cd $CLASSES \
+	&& ls -1 | sed 's/^/- /g' \
+	&& cd $PWD \
+	&& exit 1
+while true; do
+	ID=$(date|md5sum|cut -d\  -f1)
+	[ -f $OBJECTS/$ID ] || break
+done
+export _ID=$ID
+export _CLASS=$CLASS
+serialize || die $?
+cd $OBJECTS/../classes/$_CLASS/
+ln -s ../../objects/$_ID . 
+echo $_ID
+cd $PWD
+exit 0

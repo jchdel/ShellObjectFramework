@@ -1,0 +1,25 @@
+#!/bin/sh
+PWD=$(pwd)
+cd $(dirname $0)/../
+. lib/object.inc
+
+[ $# -eq 0 ] \
+	&& echo "Usage:" \
+	&& echo "$(basename $0) ID <METHOD <PARAMS>>" \
+	&& cd $PWD \
+	&& exit 1
+
+deserialize $1 || die $?
+shift
+[ $# -gt 0 ] && METHOD=$1 && shift
+PARAMS="$*"
+
+#echo "Class  : $_CLASS"
+#echo "Object : $_ID"
+#echo "Method : $METHOD"
+#echo "Params : $PARAMS"
+
+[ -z "$METHOD" ] || $METHOD $PARAMS
+
+cd $PWD
+exit 0

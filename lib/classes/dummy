@@ -1,0 +1,7 @@
+# placeholder for code related to the "dummy" class
+
+ping(){
+	echo -n "pong "
+	echo "$PARAMS" | rev
+	return 0
+}
