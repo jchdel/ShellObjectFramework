@@ -8,14 +8,14 @@ serialize(){
 }
 
 deserialize(){
-	_ID=$1
-	[ -z "$_ID" ] \
+	ID=$1
+	[ -z "$ID" ] \
 		&& echo "No ID provided." >&2 \
 		&& return 1
-	if [ ! -z "$_ID" -a -f $OBJECTS/$_ID ]; then
-		. $OBJECTS/$_ID
+	if [ ! -z "$ID" -a -f $OBJECTS/$ID ]; then
+		. $OBJECTS/$ID
 	else
-		echo "$_ID is not a valid ID." >&2
+		echo "$ID is not a valid ID." >&2
 	        return 2
 	fi
 	[ -z "$_CLASS" ] && _CLASS=dummy
