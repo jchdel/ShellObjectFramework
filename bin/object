@@ -19,6 +19,7 @@ PARAMS="$*"
 #echo "Method : $METHOD"
 #echo "Params : $PARAMS"
 
+grep -q "$METHOD" $CLASSES/$_CLASS || die "Not a valid method: $METHOD"
 [ -z "$METHOD" ] || $METHOD $PARAMS
 
 cd $PWD
